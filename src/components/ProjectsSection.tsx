@@ -1,0 +1,108 @@
+
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Github, Link } from "lucide-react";
+
+const ProjectsSection = () => {
+  const projects = [
+    {
+      id: 1,
+      title: "Smart Attendance System",
+      description: "A face recognition-based attendance system using Python, OpenCV, and machine learning algorithms.",
+      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+      tags: ["Python", "OpenCV", "Machine Learning", "Flask"],
+      liveLink: "#",
+      githubLink: "#"
+    },
+    {
+      id: 2,
+      title: "E-Learning Platform",
+      description: "A web application for online courses with features like video lectures, quizzes, and progress tracking.",
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+      tags: ["React", "Node.js", "MongoDB", "Express"],
+      liveLink: "#",
+      githubLink: "#"
+    },
+    {
+      id: 3,
+      title: "Expense Tracker App",
+      description: "A mobile-responsive web app to track personal expenses with visualization and categorization features.",
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+      tags: ["JavaScript", "Chart.js", "Bootstrap", "Firebase"],
+      liveLink: "#",
+      githubLink: "https://github.com/ayussh176/Expense_tracker.git"
+    },
+    {
+      id: 4,
+      title: "Weather Forecast Dashboard",
+      description: "A weather application that provides current and forecasted weather data using external APIs.",
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+      tags: ["HTML/CSS", "JavaScript", "API Integration"],
+      liveLink: "#",
+      githubLink: "https://github.com/ayussh176/weather.git"
+    }
+  ];
+
+  return (
+    <section id="projects" className="py-20 bg-white dark:bg-gray-900">
+      <div className="container mx-auto px-4">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <h2 className="text-3xl font-bold mb-4 font-mono">
+            My <span className="text-purple-600">Projects</span>
+          </h2>
+          <div className="h-1 w-20 bg-purple-600 mx-auto mb-6"></div>
+          <p className="text-gray-600 dark:text-gray-300">
+            Here are some of the projects I've worked on during my academic journey.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projects.map((project, index) => (
+            <Card key={project.id} className="border-purple-100 dark:border-purple-800 overflow-hidden hover:shadow-lg transition-shadow animate-fade-in" 
+              style={{ animationDelay: `${0.1 + index * 0.1}s` }}>
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
+                />
+              </div>
+              <CardHeader className="pb-2">
+                <CardTitle className="font-mono">{project.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="pb-4">
+                <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.map((tag) => (
+                    <Badge key={tag} variant="outline" className="bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-300 border-purple-200 dark:border-purple-800">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+              <CardFooter className="flex justify-between">
+                <Button variant="ghost" size="sm" className="text-purple-600 hover:text-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900/20 px-3">
+                  <Github size={18} className="mr-2" />
+                  Code
+                </Button>
+                <Button variant="ghost" size="sm" className="text-purple-600 hover:text-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900/20 px-3">
+                  <Link size={18} className="mr-2" />
+                  Demo
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+        
+        <div className="text-center mt-12">
+          <Button className="bg-purple-600 hover:bg-purple-700 text-white">
+            View All Projects <ArrowRight size={16} className="ml-2" />
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ProjectsSection;
