@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,34 +5,52 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import emailjs from "emailjs-com"; // ✅ EmailJS
 
 const ContactSection = () => {
   const { toast } = useToast();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: ""
   });
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    toast({
-      title: "Message sent!",
-      description: "Thanks for reaching out. I'll get back to you soon.",
-    });
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: ""
+
+    // ✅ Send email via EmailJS
+    emailjs.send(
+      "service_uzwphbq",        // your service ID
+      "template_8bjdfhp",       // your template ID
+      {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      },
+      "pyfl-syYnRBSs06NL"       // your public key
+    )
+    .then(() => {
+      toast({
+        title: "Message sent!",
+        description: "Thanks for reaching out. I'll get back to you soon.",
+      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    })
+    .catch((error) => {
+      console.error("EmailJS error:", error);
+      toast({
+        title: "Failed to send",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
     });
   };
 
@@ -49,7 +66,7 @@ const ContactSection = () => {
             Have a question or want to work together? Feel free to contact me!
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <div className="lg:col-span-1 animate-fade-in" style={{ animationDelay: '0.1s' }}>
             <div className="space-y-6">
@@ -64,7 +81,7 @@ const ContactSection = () => {
                   </div>
                 </CardContent>
               </Card>
-              
+
               <Card className="border-purple-100 dark:border-purple-800 hover:shadow-md transition-shadow">
                 <CardContent className="p-6 flex items-start space-x-4">
                   <div className="mt-1">
@@ -76,7 +93,7 @@ const ContactSection = () => {
                   </div>
                 </CardContent>
               </Card>
-              
+
               <Card className="border-purple-100 dark:border-purple-800 hover:shadow-md transition-shadow">
                 <CardContent className="p-6 flex items-start space-x-4">
                   <div className="mt-1">
@@ -90,7 +107,7 @@ const ContactSection = () => {
               </Card>
             </div>
           </div>
-          
+
           <div className="lg:col-span-2 animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <Card className="border-purple-100 dark:border-purple-800">
               <CardContent className="p-6">
@@ -107,7 +124,6 @@ const ContactSection = () => {
                         onChange={handleChange}
                         placeholder="Ayush Malik"
                         required
-                        className="border-purple-200 dark:border-purple-800 focus:border-purple-400 focus:ring-purple-400"
                       />
                     </div>
                     <div>
@@ -122,7 +138,6 @@ const ContactSection = () => {
                         onChange={handleChange}
                         placeholder="abc@gmail.com"
                         required
-                        className="border-purple-200 dark:border-purple-800 focus:border-purple-400 focus:ring-purple-400"
                       />
                     </div>
                   </div>
@@ -137,7 +152,6 @@ const ContactSection = () => {
                       onChange={handleChange}
                       placeholder="How can I help you?"
                       required
-                      className="border-purple-200 dark:border-purple-800 focus:border-purple-400 focus:ring-purple-400"
                     />
                   </div>
                   <div className="mb-4">
@@ -152,7 +166,6 @@ const ContactSection = () => {
                       placeholder="Your message here..."
                       rows={5}
                       required
-                      className="border-purple-200 dark:border-purple-800 focus:border-purple-400 focus:ring-purple-400"
                     />
                   </div>
                   <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white">

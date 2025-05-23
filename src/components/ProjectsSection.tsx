@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -56,15 +55,15 @@ const ProjectsSection = () => {
             Here are some of the projects I've worked on during my academic journey.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <Card key={project.id} className="border-purple-100 dark:border-purple-800 overflow-hidden hover:shadow-lg transition-shadow animate-fade-in" 
+            <Card key={project.id} className="border-purple-100 dark:border-purple-800 overflow-hidden hover:shadow-lg transition-shadow animate-fade-in"
               style={{ animationDelay: `${0.1 + index * 0.1}s` }}>
               <div className="h-48 overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
+                <img
+                  src={project.image}
+                  alt={project.title}
                   className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
                 />
               </div>
@@ -82,10 +81,12 @@ const ProjectsSection = () => {
                 </div>
               </CardContent>
               <CardFooter className="flex justify-between">
-                <Button variant="ghost" size="sm" className="text-purple-600 hover:text-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900/20 px-3">
-                  <Github size={18} className="mr-2" />
-                  Code
-                </Button>
+                <a href={project.githubLink} target="_blank" rel="noopener noreferrer">
+                  <Button variant="ghost" size="sm" className="text-purple-600 hover:text-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900/20 px-3">
+                    <Github size={18} className="mr-2" />
+                    Code
+                  </Button>
+                </a>
                 <Button variant="ghost" size="sm" className="text-purple-600 hover:text-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900/20 px-3">
                   <Link size={18} className="mr-2" />
                   Demo
@@ -94,7 +95,7 @@ const ProjectsSection = () => {
             </Card>
           ))}
         </div>
-        
+
         <div className="text-center mt-12">
           <Button className="bg-purple-600 hover:bg-purple-700 text-white">
             View All Projects <ArrowRight size={16} className="ml-2" />
