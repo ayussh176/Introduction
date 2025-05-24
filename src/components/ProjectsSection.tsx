@@ -100,14 +100,16 @@ const ProjectsSection = () => {
                     Code
                   </Button>
                 </a>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-purple-600 hover:text-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900/20 px-3"
-                >
-                  <Link size={18} className="mr-2" />
-                  Demo
-                </Button>
+                <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-purple-600 hover:text-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900/20 px-3"
+                  >
+                    <Link size={18} className="mr-2" />
+                    Demo
+                  </Button>
+                </a>
               </CardFooter>
             </Card>
           ))}

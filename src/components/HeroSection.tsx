@@ -38,7 +38,7 @@ const HeroSection = () => {
               <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-xl">
                 I'm passionate about building innovative solutions through code. 
                 Currently pursuing my Bachelor's in Computer Science Engineering, 
-                focusing on web development and machine learning.
+                focusing on Data Science, Machine learning and Web Development.
               </p>
             </div>
             <div className="flex flex-wrap gap-4">
